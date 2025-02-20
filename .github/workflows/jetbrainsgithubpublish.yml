@@ -1,5 +1,8 @@
 name: JetBrains Github Publish
 on:
+  push:
+    branches:
+      - test-754
   workflow_dispatch:
 
 jobs:
@@ -8,15 +11,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, ubuntu-24.04, windows-latest, macos-13, macos-latest]
-        version: [11, 17 ,21]
+        os: [ubuntu-latest]
+        version: [21]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup Java
-        uses: gmitch215/setup-java@main
+        uses: actions/setup-java@v4
         with:
-            distribution: jetbrains
+            distribution: 'temurin'
             java-version: ${{ matrix.version }}
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

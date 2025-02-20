@@ -12,7 +12,12 @@ plugins {
 repositories {
     mavenLocal()
     maven {
-        url = uri("https://repo.maven.apache.org/maven2/")
+      name = "GitHubPackages"
+      url = "https://maven.pkg.github.com/priya-kinthali/sample-java-new"
+      credentials {
+        username = System.getenv("GITHUB_ACTOR")
+        password = System.getenv("GITHUB_TOKEN")
+      }
     }
 }
 
@@ -20,11 +25,6 @@ dependencies {
     api(libs.org.springframework.boot.spring.boot.starter.web)
     testImplementation(libs.org.springframework.boot.spring.boot.starter.test)
 }
-
-group = "com.example"
-version = "0.0.1-SNAPSHOT"
-description = "demo"
-java.sourceCompatibility = JavaVersion.VERSION_17
 
 publishing {
     publications.create<MavenPublication>("maven") {
