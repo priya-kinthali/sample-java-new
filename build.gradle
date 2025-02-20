@@ -5,15 +5,15 @@
  */
 
 plugins {
-    `java-library`
-    `maven-publish`
+    id 'java-library'
+    id 'maven-publish'
 }
 
 repositories {
     mavenLocal()
     maven {
       name = "GitHubPackages"
-      url = "https://maven.pkg.github.com/priya-kinthali/sample-java-new"
+      url = "https://maven.pkg.github.com/priya-kinthali/samplejavanew"
       credentials {
         username = System.getenv("GITHUB_ACTOR")
         password = System.getenv("GITHUB_TOKEN")
@@ -22,20 +22,21 @@ repositories {
 }
 
 dependencies {
-    api(libs.org.springframework.boot.spring.boot.starter.web)
-    testImplementation(libs.org.springframework.boot.spring.boot.starter.test)
+    testImplementation libs.junit.junit
 }
 
 publishing {
-    publications.create<MavenPublication>("maven") {
-        from(components["java"])
+    publications {
+        maven(MavenPublication) {
+            from(components.java)
+        }
     }
 }
 
-tasks.withType<JavaCompile>() {
-    options.encoding = "UTF-8"
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
 }
 
-tasks.withType<Javadoc>() {
-    options.encoding = "UTF-8"
+tasks.withType(Javadoc) {
+    options.encoding = 'UTF-8'
 }
