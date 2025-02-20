@@ -22,8 +22,7 @@ repositories {
 }
 
 dependencies {
-    api(libs.org.springframework.boot.spring.boot.starter.web)
-    testImplementation(libs.org.springframework.boot.spring.boot.starter.test)
+    testImplementation libs.junit.junit
 }
 
 publishing {
@@ -34,3 +33,10 @@ publishing {
     }
 }
 
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+tasks.withType(Javadoc) {
+    options.encoding = 'UTF-8'
+}
