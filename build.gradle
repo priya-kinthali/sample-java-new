@@ -12,18 +12,15 @@ plugins {
 repositories {
     mavenLocal()
     maven {
-      name = "GitHubPackages"
-      url = "https://maven.pkg.github.com/priya-kinthali/samplejavanew"
-      credentials {
-        username = System.getenv("GITHUB_ACTOR")
-        password = System.getenv("GITHUB_TOKEN")
-      }
+        url = uri("https://repo.maven.apache.org/maven2/")
     }
 }
 
 dependencies {
-    testImplementation libs.junit.junit
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.5.4'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.4'
 }
+
 
 publishing {
     publications {
@@ -34,9 +31,9 @@ publishing {
 }
 
 tasks.withType(JavaCompile) {
-    options.encoding = 'UTF-8'
+    options.encoding = "UTF-8"
 }
 
 tasks.withType(Javadoc) {
-    options.encoding = 'UTF-8'
+    options.encoding = "UTF-8"
 }
